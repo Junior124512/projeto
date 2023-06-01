@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniNine</title>
+    <style>
+        /* Estilos globais */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FDFDFD;
+            color: #555;
+            font-size: 18px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* Estilos para a barra de navegação */
+ nav {
+        background-color: #FDFDFD;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    li {
+        margin-right: 700px;
+        background-color: #F6C9B9;
+        padding: 20px;
+        color: #fff;
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        text-shadow: 2px 2px #D9967F;
+        border-radius: 10px;
+    }
+
+    /* Estilos para os títulos */
+    h1 {
+        margin-top: 40px;
+        font-size: 48px;
+        font-weight: bold;
+        color: #555;
+        text-shadow: 2px 2px #D9967F;
+    }
+
+    /* Estilos para os botões */
+    button {
+        padding: 20px;
+        color: #fff;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #F6C9B9;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+}
+
+    button:hover {
+        background-color: #D9967F;
+    }
+
+        /* Estilos para os títulos */
+        h1 {
+            margin-top: 40px;
+            font-size: 48px;
+            font-weight: bold;
+            color: #555;
+            text-shadow: 2px 2px #D9967F;
+        }
+
+        /* Estilos para os links */
+        a {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #555;
+            text-decoration: none;
+            line-height: 1.5;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos para a área de comentários */
+        .comments {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #F6C9B9;
+            color: #fff;
+            text-align: left;
+            border-radius: 10px;
+        }
+
+        .comments textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 10px;
+            resize: none;
+            border-radius: 5px;
+        }
+
+        .comments input[type="submit"] {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Estilos para a área de visualização dos comentários */
+        .comment-list {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #FDFDFD;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .comment-list h2 {
+            font-size: 24px;
+            color: #555;
+            text-shadow: 2px 2px #D9967F;
+        }
+
+        .comment-list p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+<div class="search-section">
+    <h2>Pesquisar Receitas</h2>
+    <form id="search-form" action="batatagratinada.html""escondidinho.html""arroz.html""lasanha.html""panqueca.html""bolodefuba.html""mandioca.html""chocolate.html""churros.html""cenoura.html""frango.html""mousse.html""pave.html""pudim.html""manjar.html">
+        <input type="text" name="recipe-name" placeholder="Digite o nome da receita">
+        <input type="submit" value="Pesquisar">
+    </form>
+</div>
+    <nav>
+        <ul>
+        <li>
+            <button><a href="listadecomidas.html">Comidas</a></button>
+        </li>
+                <li>
+                    <button><a href="listadebolos.html">Bolos</a></button>
+                </li>
+                <li>
+                    <button><a href="listadesobremesa.html">Sobremesas</a></button>
+                </li>
+            </ul>
+        </nav>
+<div class="comments">
+  <h2>Deixe seu comentário</h2>
+  <form id="comment-form">
+    <input type="text" id="name-input" placeholder="Seu nome"><br>
+    <textarea id="comment-textarea" placeholder="Digite seu comentário"></textarea><br>
+    <input type="submit" value="Enviar">
+  </form>
+</div>
+
+<div class="comment-list" id="comment-list">
+  <h2>Comentários</h2>
+  <!-- Os comentários serão exibidos aqui -->
+</div>
+
+<script>
+  const commentForm = document.getElementById('comment-form');
+  const commentTextarea = document.getElementById('comment-textarea');
+  const commentList = document.getElementById('comment-list');
+  const nameInput = document.getElementById('name-input');
+
+  commentForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    submitComment();
+  });
+
+  commentTextarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      submitComment();
+    }
+  });
+
+  function submitComment() {
+    const comment = commentTextarea.value.trim();
+    const name = nameInput.value.trim();
+
+    if (comment === '') {
+      alert('Por favor, digite um comentário.');
+      return;
+    }
+
+    const newComment = document.createElement('div');
+    newComment.classList.add('comment');
+
+    const commenterName = document.createElement('p');
+    commenterName.innerText = 'Nome: ' + name;
+
+    const commentContent = document.createElement('p');
+    commentContent.innerText = 'Comentário: ' + comment;
+
+    newComment.appendChild(commenterName);
+    newComment.appendChild(commentContent);
+    commentList.appendChild(newComment);
+
+    // Limpa os campos de texto do formulário
+    commentTextarea.value = '';
+    nameInput.value = '';
+  }
+</script>
+
+</body>
+</html>
